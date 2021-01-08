@@ -1,0 +1,69 @@
+.Base-table-grid {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  position: relative;
+  margin: 0 0 2em;
+
+  // https://www.smashingmagazine.com/2019/01/table-design-patterns-web/
+  background: linear-gradient(to right, white 30%, rgba(255, 255, 255, 0)),
+    linear-gradient(to right, rgba(255, 255, 255, 0), white 70%) 0 100%,
+    radial-gradient(farthest-side at 0% 50%, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)),
+    radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)) 0 100%;
+  background-repeat: no-repeat;
+  background-color: white;
+  background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
+  background-position: 0 0, 100%, 0 0, 100%;
+  background-attachment: local, local, scroll, scroll;
+}
+
+.Base-table {
+  border-collapse: collapse;
+  text-align: left;
+  width: 100%;
+
+
+  td,
+  th {
+    text-align: center;
+    vertical-align: top;
+    //hyphens: auto;
+    padding: $susy-gutter-width $susy-gutter-width*2;
+    border: none;
+  }
+
+  th {
+    @include font-Default;
+    @include font-size(18px);
+    font-weight: $fontweight-Default-bold;
+  }
+
+  td {
+    @include default-p;
+  }
+
+  thead {
+    color: $color-black;
+
+    tr {
+      border: 0;
+      border-bottom: 1px solid $color-gainsboro;
+      border-top: 1px solid $color-gainsboro;
+    }
+  }
+
+  tbody {
+    color: $color-anthrazit;
+    //background-color: $color-lavender-gray;
+
+    tr {
+      //background-color: rgba($color-black, 0.3);
+      border-bottom: 1px solid $color-gainsboro;
+    }
+
+    tr:nth-child(odd) {
+      //background-color: rgba(39, 160, 123, 0.1);
+    }
+  }
+}
+

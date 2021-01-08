@@ -1,0 +1,171 @@
+//
+// includes an z-index from an z-index list
+// http://www.smashingmagazine.com/2014/06/12/sassy-z-index-management-for-complex-layouts/
+// user like this: z-index: z($z-main, header);
+@function z($list, $element) {
+
+  $z-index: index($list, $element);
+
+  @if $z-index {
+    @return $z-index;
+  }
+
+  @warn 'There is no item "#{$element}" in this list; choose one of: #{$list}';
+
+  @return null;
+}
+
+// Turn numbers with units into unitless numbers: https://github.com/nex3/sass/issues/533
+@function clear-units($value) {
+  @if type-of($value) == "number" {
+    @if (unitless($value)) {
+      @return $value;
+    }
+
+    @else if unit($value) == "em" {
+      @return $value / 1em;
+    }
+
+    @else if unit($value) == "px" {
+      @return $value / 1px;
+    }
+
+    @else if unit($value) == "pt" {
+      @return $value / 1pt;
+    }
+  }
+
+  @else {
+    @warn "Not a number value: #{$value}";
+    @return $value;
+  }
+}
+
+// function to do the math of pixel to EM conversion. Needs a base-font-size set in _constants.scss
+@function px2em( $pixel, $base-size:$base-font-size ) {
+  // Remove units for easier math.
+  $pixel: clear-units($pixel);
+  $base-size: clear-units($base-size);
+  @return #{$pixel / $base-size}em;
+}
+
+// function to do the math of pixel to REM conversion. Needs a base-font-size set in _constants.scss
+@function px2rem( $pixel, $base-size:$base-font-size ) {
+  // Remove units for easier math.
+  $pixel: clear-units($pixel);
+  $base-size: clear-units($base-size);
+  @return #{$pixel / $base-size}rem;
+}
+
+@function to-string($value) {
+  @return inspect($value);
+}
+
+// str-replace
+// ------------
+// by Hugo Giraudel
+// Replace `$search` with `$replace` in `$string`
+// @param {String} $string - Initial string
+// @param {String} $search - Substring to replace
+// @param {String} $replace ('') - New value
+// @return {String} - Updated string
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+//@mixin aspect-ratio($arglist... /*$width/$ratio, $height*/){
+//  $map : keywords($arglist);
+//  $height: map-get($map, height) or nth-or-null($arglist, 2);
+//  $width:  map-get($map, width)  or nth-or-null($arglist, 1);
+//  $ratio:  map-get($map, ratio)  or if($width and $height, $width/$height, nth-or-null($arglist, 1)) or 1;
+//  $padding: 1/$ratio * 100%;
+//  &:before { content: ''; float:left; padding-bottom: $padding; }
+//  &:after  { content: ''; display:table; clear: both; }
+//}
+
+// Helper function
+// Return null rather than throwing an error if index is outside list range.
+@function nth-or-null($list, $index) {
+  @return if(length($list) >= $index, nth($list, $index), null);
+}
+
+
+//
+//  Function to create an optimized svg url, if svg is directly added in sass
+//  Example:
+//  .bg {
+//    background-image: svg-url('<svg ...> ... </svg>');
+//  }
+// https://codepen.io/tigt/post/optimizing-svgs-in-data-uris
+//
+@function svg-url($svg) {
+  //
+  //  Add missing namespace
+  //
+  @if not str-index($svg,xmlns) {
+    $svg: str-replace($svg, '<svg', '<svg xmlns="http://www.w3.org/2000/svg"');
+  }
+  //
+  //  Chunk up string in order to avoid
+  //  "stack level too deep" error
+  //
+  $encoded:'';
+  $slice: 2000;
+  $index: 0;
+  $loops: ceil(str-length($svg)/$slice);
+  @for $i from 1 through $loops {
+    $chunk: str-slice($svg, $index, $index + $slice - 1);
+    //
+    //   Encode
+    //
+    $chunk: str-replace($chunk, '"', '\'');
+    $chunk: str-replace($chunk, '%', '%25');
+    $chunk: str-replace($chunk, '&', '%26');
+    $chunk: str-replace($chunk, '#', '%23');
+    $chunk: str-replace($chunk, '{', '%7B');
+    $chunk: str-replace($chunk, '}', '%7D');
+    $chunk: str-replace($chunk, '<', '%3C');
+    $chunk: str-replace($chunk, '>', '%3E');
+
+    //
+    //    The maybe list
+    //
+    //    Keep size and compile time down
+    //    ... only add on documented fail
+    //
+    //  $chunk: str-replace($chunk, '|', '%7C');
+    //  $chunk: str-replace($chunk, '[', '%5B');
+    //  $chunk: str-replace($chunk, ']', '%5D');
+    //  $chunk: str-replace($chunk, '^', '%5E');
+    //  $chunk: str-replace($chunk, '`', '%60');
+    //  $chunk: str-replace($chunk, ';', '%3B');
+    //  $chunk: str-replace($chunk, '?', '%3F');
+    //  $chunk: str-replace($chunk, ':', '%3A');
+    //  $chunk: str-replace($chunk, '@', '%40');
+    //  $chunk: str-replace($chunk, '=', '%3D');
+
+    $encoded: #{$encoded}#{$chunk};
+    $index: $index + $slice;
+  }
+  @return url("data:image/svg+xml,#{$encoded}");
+}
+
+@function col-width($cols, $insiderCol:false) {
+  @if $insiderCol {
+    // if col-width has gutter padding-left and padding-right included
+    @return $col-width*$cols + 0px;
+  }
+  @else {
+    @return $col-width*$cols - $susy-gutter-width*2;
+  }
+}
+//  Background svg mixin
+//@mixin background-svg($svg){
+//  background-image: svg-url($svg);
+//}

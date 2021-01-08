@@ -1,0 +1,43 @@
+
+.SectionHeader {
+  position: relative;
+}
+
+.SectionHeader-container {
+  position: relative;
+  height: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-direction: column;
+
+  @include respond-to-grid(5) {
+    flex-direction: row;
+  }
+}
+
+.SectionHeader-logo {
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  order: 2;
+
+  @include respond-to-grid(5) {
+    width: 50%;
+    order: 1;
+  }
+}
+
+.logo-lg {
+  width: 100%;
+}
+
+.fadeOpacity-enter-active, .fadeOpacity-leave-active {
+  transition: opacity 0.35s ease-out;
+}
+
+.fadeOpacity-enter, .fadeOpacity-leave-active {
+  opacity: 0;
+}

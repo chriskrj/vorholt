@@ -1,0 +1,90 @@
+$browser-context: 16;
+
+@function em($pixels, $context: $browser-context) {
+  @return #{$pixels/$context}em;
+}
+
+.Accordion {
+  @include margin-bottom($susy-gutter-width*2);
+
+  & .accordion-item:nth-child(even) {
+    background-color: var(--main-light-bg-color);
+  }
+
+  div:last-child .accordion-item-details {
+    border-radius: 5px;
+  }
+
+  dd {
+    margin-left: 0;
+  }
+}
+
+.accordion-item {
+  position: relative;
+  cursor: pointer;
+  @include margin-bottom($susy-gutter-width);
+}
+
+.accordion-item-trigger,
+.accordion-item-details-inner {
+  padding: 0.75rem 0;
+}
+
+.accordion-item-title {
+  position: relative;
+
+  &-text {
+    @include default-p;
+    font-size: 1.25rem;
+    margin-bottom: 0;
+    padding-left: 1.75rem;
+    padding-right: 2.5rem;
+    color: var(--main-headline-color);
+  }
+}
+
+.accordion-item-trigger {
+  position: relative;
+  width: 100%;
+  text-align: left;
+  background-color: transparent;
+  border: none;
+}
+
+.accordion-item-trigger-icon {
+  $size: 16px;
+  display: block;
+  position: absolute;
+  top: 0;
+  right: $susy-gutter-width;
+  bottom: 0;
+  margin: auto;
+  width: $size;
+  height: $size;
+  border-right: 2px solid var(--main-bg-color);
+  border-bottom: 2px solid var(--main-bg-color);
+  transform: translateY(-$size / 4) rotate(45deg);
+  transition: transform 0.2s ease;
+
+  .is-active & {
+    transform: translateY($size / 4) rotate(225deg);
+  }
+}
+
+.accordion-item-details {
+  overflow: hidden;
+  background-color: white;
+  @include padding($susy-gutter-width);
+}
+
+.accordion-item-enter-active,
+.accordion-item-leave-active {
+  will-change: height;
+  transition: height 0.2s ease;
+}
+
+.accordion-item-enter,
+.accordion-item-leave-to {
+  height: 0 !important;
+}

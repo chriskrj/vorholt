@@ -1,0 +1,13 @@
+// hide, if js is available
+.u-js-hide {
+  .js & {
+    display: none;
+  }
+}
+
+// only show, if js is available
+.u-js-only {
+  .no-js & {
+    display: none;
+  }
+}

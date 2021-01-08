@@ -1,0 +1,153 @@
+.Navigation {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-end;
+  width: 100%;
+  order: 1;
+
+  @include respond-to-grid(5) {
+    width: 70%;
+    display: flex;
+    order: 2;
+  }
+}
+
+.servicenav {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  background-color: var(--main-bg-color);
+  padding: 16px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom-left-radius: unset;
+  border-bottom-right-radius: unset;
+
+  @include respond-to-grid(5) {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
+  @include respond-to-grid(7) {
+    padding: 16px;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.servicenav-linkFax {
+  display: none;
+
+  @include respond-to-grid(5) {
+    display: block;
+  }
+}
+
+.servicenav-link {
+  margin-right: 2rem;
+  height: 20px;
+  line-height: 1.25;
+
+  &:hover {
+    background-size: 0 !important;
+  }
+
+  @include respond-to-grid(7) {
+    height: auto;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.servicenav-linkContent {
+  display: none;
+
+  @include respond-to-grid(7) {
+    display: inline;
+  }
+}
+
+.nav {
+  position: relative;
+  width: 100%;
+  background-color: white;
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  height: 1px;
+
+  @include respond-to-grid(5) {
+    flex-direction: row;
+    justify-content: flex-end;
+    opacity: 1;
+    visibility: visible;
+    height: 100%;
+    padding: 16px;
+  }
+
+  &.is-open {
+    height: auto;
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.nav-link {
+  @include font-Default;
+  color: var(--main-headline-color);
+  margin-right: 1.5rem;
+  padding-bottom: 0.25em;
+
+  @include respond-to-grid(9) {
+    margin-right: 2rem;
+  }
+
+  &:hover {
+    border-bottom: 1px solid currentColor;
+  }
+
+  &.is-open {
+    border-bottom: 1px solid currentColor;
+  }
+}
+
+.nav-iconLink {
+  box-sizing: content-box !important;
+  width: 100%;
+  height: auto;
+  overflow: visible !important;
+  fill: var(--main-link-color);
+}
+
+.MobileNav {
+  background: transparent;
+}
+
+.MobileNav-link {
+  display: block;
+  @include font-Default;
+  @include font-size(24px);
+  color: var(--mobile-nav-color);
+  margin-right: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 2px solid rgba($color-gainsboro, 0.5);
+
+  &:hover {
+    border-bottom: 1px solid currentColor;
+  }
+
+  &.is-open {
+    border-bottom: 1px solid currentColor;
+  }
+}

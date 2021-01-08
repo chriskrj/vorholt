@@ -1,0 +1,86 @@
+.Base-h1 {
+  @include default-h1;
+  color: var(--main-headline-color);
+  margin-bottom: 1em;
+
+  .Base-theme--dark & {
+    color: $color-white;
+  }
+}
+
+.Base-h2 {
+  @include default-h2;
+  color: var(--main-headline-color);
+  margin-bottom: 1em;
+
+  .Base-theme--dark & {
+    color: $color-white;
+  }
+}
+
+.Base-h3 {
+  @include default-h3;
+  color: var(--main-headline-color);
+  margin-bottom: 1em;
+
+  .Base-theme--dark & {
+    color: $color-white;
+  }
+}
+
+.Base-h4 {
+  @include default-h4;
+  color: var(--main-headline-color);
+  margin-bottom: 1em;
+
+  .Base-theme--dark & {
+    color: $color-white;
+  }
+}
+
+.Base-h5 {
+  @include default-h5;
+  color: $color-anthrazit;
+  margin-bottom: 1em;
+
+  .Base-theme--dark & {
+    color: $color-white;
+  }
+}
+
+.Base-h6 {
+  @include default-h6;
+  color: $color-anthrazit;
+  margin-bottom: 1em;
+
+  .Base-theme--dark & {
+    color: $color-white;
+  }
+}
+
+// always use with p-tag, if before headline
+// https://medium.com/@khrystynka/if-youve-ever-had-doubts-about-how-to-mark-up-subheadings-220cbe97c361
+// http://html5doctor.com/howto-subheadings/
+.Base-h-sub {
+  @include default-h-sub;
+  color: $color-anthrazit;
+  margin-bottom: 1em;
+  //letter-spacing: 0.15em;
+  .Base-theme--dark & {
+    color: $color-white;
+  }
+}
+
+.Base-h-date {
+  display: block;
+  @include default-p;
+  color: $color-bek-blau;
+  text-transform: uppercase;
+
+  .Base-theme--dark & {
+    color: $color-white;
+  }
+
+  margin-bottom: 0.25em;
+}
+

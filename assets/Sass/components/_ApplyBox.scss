@@ -1,0 +1,5 @@
+.ApplyBox {
+  background-color: var(--main-lightblue-bg-color);
+  @include padding($susy-gutter-width*2);
+  border-radius: $nudge;
+}

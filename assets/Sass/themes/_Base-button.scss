@@ -1,0 +1,54 @@
+.Base-button {
+  @include font-Default;
+  @include font-size(18px);
+  font-weight: $fontweight-Default-bold;
+  cursor: pointer;
+  outline: none;
+  color: $color-white;
+  background-color: $color-himmelblau;
+  border: none;
+  padding: 0.7em 2em;
+  display: inline-block;
+  background-position: center;
+  transition: background-color 0.8s $easeInOutCubic;
+
+  &:hover,
+  .u-linkWrap:hover {
+    background: $color-swimmingpool radial-gradient(circle, transparent 1%, $color-swimmingpool 1%) center/15000%;
+  }
+
+  &.u-linkWrap.is-active &,
+  .u-linkWrap:active &,
+  &.is-active,
+  &:active {
+    background-color: $color-swimmingpool;
+    background-size: 100%;
+    transition: background 0s;
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.25;
+    pointer-events: none;
+  }
+
+  .u-textAlign--center & {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .u-textAlign--right & {
+    margin-left: 0.5em;
+    margin-right: 0;
+  }
+}
+
+.Base-button--block {
+  display: block;
+  width: 100%;
+}
+
+.Base-button--large {
+  @include font-size(28px);
+  padding: 1.2em 4em;
+}

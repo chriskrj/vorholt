@@ -1,0 +1,196 @@
+//
+// Media queries mixin
+//
+// example use:
+//
+// .test {
+//  @include respond-to(xl) {  }
+//  @include respond-to(lg) {  }
+//  @include respond-to(md) {  }
+//  @include respond-to(sm) { }
+//  @include respond-to(xs) {  }
+//  @include respond-to(xxs) {  }
+// }
+
+@mixin respond-to($size: md) {
+  @media (min-width: map-get($breakpoints, $size)) {
+    @content;
+  }
+}
+
+// calc(4vw + #{$susy-gutter-width})
+// 100 - 2*4vw = 92
+// 1 = 140, 2 = 279, 3 = 418, 4 = 557, 5 = 696, 6 = 835, 7 = 974, 8 = 1114, 9 = 1253, 10 = 1392, 11 = 1531, 12 = 1670
+@mixin respond-to-grid($cols) {
+
+  $inner-width: (100 - $outer-pad*2) / 100;
+
+  @media (min-width: #{$col-width*$cols/$inner-width}px) {
+    @content;
+  }
+}
+
+@mixin clearfix() {
+  &::after {
+    content: " ";
+    display: block;
+    clear: both;
+  }
+}
+
+
+@mixin visuallyUnhidden {
+  clip: auto;
+  clip-path: none;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
+  white-space: inherit;
+}
+
+@mixin visuallyHidden() {
+
+  // Hide only visually, but have it available for screenreaders: h5bp.com/v
+  & {
+    border: 0;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap; /* 1 */
+  }
+
+  // Extends the .visuallyhidden class to allow the element to be focusable when navigated to via the keyboard: h5bp.com/p
+  &.focusable:active,
+  &.focusable:focus {
+    @include visuallyUnhidden;
+  }
+}
+
+@mixin resetButton {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: default;
+    pointer-events: none;
+  }
+}
+
+// https://medium.com/clear-left-thinking/all-you-need-to-know-about-hyphenation-in-css-2baee2d89179
+@mixin hyphenate {
+  -webkit-hyphens: auto;
+  -webkit-hyphenate-limit-before: 3;
+  -webkit-hyphenate-limit-after: 3;
+  -webkit-hyphenate-limit-chars: 6 3 3;
+  -webkit-hyphenate-limit-lines: 2;
+  -webkit-hyphenate-limit-last: always;
+  -webkit-hyphenate-limit-zone: 8%;
+
+  -moz-hyphens: auto;
+  -moz-hyphenate-limit-chars: 6 3 3;
+  -moz-hyphenate-limit-lines: 2;
+  -moz-hyphenate-limit-last: always;
+  -moz-hyphenate-limit-zone: 8%;
+
+  -ms-hyphens: auto;
+  -ms-hyphenate-limit-chars: 6 3 3;
+  -ms-hyphenate-limit-lines: 2;
+  -ms-hyphenate-limit-last: always;
+  -ms-hyphenate-limit-zone: 8%;
+
+  hyphens: auto;
+  hyphenate-limit-chars: 6 3 3;
+  hyphenate-limit-lines: 2;
+  hyphenate-limit-last: always;
+  hyphenate-limit-zone: 8%;
+}
+
+
+@mixin font-Default {
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+@mixin font-Literata {
+  font-family: 'Literata', Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+@mixin default-h1 {
+  @include font-Default;
+  @include font-size(48px);
+  font-weight: $fontweight-Default-black;
+  line-height: 1;
+}
+
+@mixin default-h2 {
+  @include font-Default;
+  @include font-size(42px);
+  font-weight: $fontweight-Default-black;
+  line-height: 1.15;
+}
+
+@mixin default-h3 {
+  @include font-Default;
+  @include font-size(30px);
+  font-weight: $fontweight-Default-black;
+  line-height: 1.15;
+}
+
+@mixin default-h4 {
+  @include font-Default;
+  @include font-size(24px);
+  font-weight: $fontweight-Default-regular;
+  line-height: 1.15;
+}
+
+@mixin default-h5 {
+  @include font-Default;
+  @include font-size(18px);
+  font-weight: $fontweight-Default-black;
+  //line-height: 1.15;
+}
+
+@mixin default-h6 {
+  @include font-Default;
+  @include font-size(16px);
+  font-weight: $fontweight-Default-black;
+  //line-height: 1.15;
+}
+
+
+@mixin default-p {
+  @include font-Default;
+  @include font-size(18px);
+  font-weight: $fontweight-Default-regular;
+}
+
+@mixin default-small {
+  @include font-Default;
+  @include font-size(16px);
+}
+
+@mixin default-large {
+  @include font-Default;
+  @include font-size(20px);
+}
+
+@mixin default-h-sub {
+  @include font-Default;
+  @include font-size(18px);
+  font-weight: $fontweight-Default-regular;
+  line-height: 1.15;
+  text-transform: uppercase;
+}

@@ -1,0 +1,426 @@
+// styling hints: http://blog.kulturbanause.de/2015/03/formular-styling-mit-css-select-listen-radio-buttons-und-checkboxen-individuell-gestalten/
+
+.Base-form {
+  position: relative;
+  width: 100%;
+  @include clearfix;
+
+  //display: flex;
+  //flex-wrap: wrap;
+  //flex-direction: row;
+}
+
+// grouping input and label
+.Base-formGroup {
+  margin-bottom: 1.5em;
+
+  padding-left: $susy-gutter-width;
+  padding-right: $susy-gutter-width;
+  width: 100%;
+  float: left;
+
+  //@include grid-col;
+  //width: span(12);
+  //@include span(last 12 of 12);  // float clearfix
+}
+
+// labels
+.Base-label {
+  @include font-Default;
+  @include font-size(18px);
+  font-weight: $fontweight-Default-regular;
+  display: block;
+  color: $color-anthrazit;
+  margin-bottom: 0.25em;
+
+  .mandatory {
+    color: $color-white;
+    padding-left: 0.25em;
+  }
+
+  .Base-theme--dark & {
+    @include default-h4;
+    text-transform: initial;
+    color: $color-white;
+  }
+}
+
+// input
+.Base-input {
+  @include font-Default;
+  @include font-size(18px);
+  font-weight: $fontweight-Default-regular;
+  width: 100%;
+  color: $color-anthrazit;
+  line-height: 1.25;
+  padding: 12px;
+  background-color: $color-white;
+  //border: 1px solid $color-black;
+  -webkit-appearance: none;
+  min-height: 3em;
+  overflow: hidden;
+  display: block;
+  border-radius: 0;
+  border: none;
+  transition: border-color 0.5s ease;
+
+  &:focus {
+    border-color: $color-bek-blau;
+  }
+}
+
+.Base-input--error {
+  border: 1px $color-himbeere solid !important;
+}
+
+// select
+.Base-select {
+  @include font-Default;
+  @include font-size(24px);
+  font-weight: $fontweight-Default-regular;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  border-radius: 0;
+  line-height: 1.5;
+  width: 100%;
+  color: $color-white;
+  padding: 11px 55px 10px 11px;
+  background-color: $color-bek-blau;
+  background-image: svg-url('<svg xmlns="http://www.w3.org/2000/svg" width="50" height="12"><path fill="'+$color-white+'" fill-rule="evenodd" d="M2.0021.0007C1.2684.0007.5614.4057.2115 1.107c-.494.9877-.0932 2.1885.8946 2.6824l15.9988 7.9994a1.9876 1.9876 0 0 0 1.7893 0l16.0002-7.9994c.9878-.4939 1.3885-1.6947.8932-2.6824-.4924-.9892-1.696-1.39-2.6824-.8947L17.9995 7.7644 2.8953.2124a1.9864 1.9864 0 0 0-.8932-.2117"/></svg>');
+  background-position: center right, bottom right, center right;
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  transition: border-color 0.5s ease;
+
+  //&:focus {
+  //  border-color: $color-yale-blue;
+  //}
+
+  &::-ms-expand {
+    display: none;
+  }
+
+  // Hide custom-icons in lower versions of Internet Explorer (< IE10).
+  .ie7 &,
+  .ie8 &,
+  .ie9 & {
+    background-image: none;
+  }
+
+  &[size] {
+    background-image: none;
+  }
+}
+
+.Base-checkbox-group,
+.Base-radio-group {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+  position: relative;
+  width: 100%;
+}
+
+// form check
+.Base-checkbox {
+  appearance: none;
+  border-radius: 0;
+  font-size: 1em;
+
+  // better styling only for modern browsers. To identify them, check for pseudoclass (:checked, :not(checked))
+  // hide standard inputs
+  &[type='checkbox']:checked,
+  &[type='checkbox']:not(checked) {
+    @include visuallyHidden;
+  }
+}
+
+// form radio
+.Base-radio {
+  appearance: none;
+  border-radius: 0;
+  font-size: 1em;
+
+  // better styling only for modern browsers. To identify them, check for pseudoclass (:checked, :not(checked))
+  // hide standard inputs
+  &[type='radio']:checked,
+  &[type='radio']:not(checked) {
+    @include visuallyHidden;
+  }
+}
+
+.Base-radio-label,
+.Base-checkbox-label {
+  @include font-Default;
+  @include font-size(18px);
+  font-weight: $fontweight-Default-regular;
+  display: inline-block;
+  color: $color-white;
+  margin-bottom: 0.167em;
+  margin-left: 2.5em;
+  cursor: pointer;
+  //width: calc(100% - 2.5em);
+}
+
+.Base-radio-label {
+  // radio background not selected
+  .Base-radio[type='radio']:checked + &::before,
+  .Base-radio[type='radio']:not(checked) + &::before {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 0;
+    top: -1px;
+    border: 1px solid rgba($color-bek-blau, 0.4);
+    background-color: $color-white;
+    border-radius: 50%;
+    transition: border-color 0.5s ease;
+  }
+
+  // check buble not checked
+  .Base-radio[type='radio']:checked + &::after,
+  .Base-radio[type='radio']:not(checked) + &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 10px;
+    top: 9px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: $color-white;
+    transform: scale(0, 0);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+
+  // radio background selected
+  .Base-radio[type='radio']:checked + &::before {
+    //box-shadow: none;
+    background-color: $color-bek-lila;
+  }
+
+  // radio bubble checked
+  .Base-radio[type='radio']:checked + &::after {
+    background: $color-white;
+    transform: scale(1, 1);
+  }
+
+  //// radio background focus
+  //.Base-radio[type='radio']:focus + &::before {
+  //  border: 1px solid rgba($color-cool-grey, 0.4);
+  //}
+  //
+  .Base-radio[type='radio']:focus + & {
+    outline: 2px dotted $color-bek-blau;
+    outline-offset: 2px;
+  }
+}
+
+
+.Base-checkbox-label {
+
+  // checkbox bg not checked
+  .Base-checkbox[type='checkbox']:checked + &::before,
+  .Base-checkbox[type='checkbox']:not(:checked) + &::before {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 0;
+    top: -3px;
+    background-color: $color-white;
+    color: $color-white;
+    border: 1px solid rgba($color-bek-blau, 0.4);
+    z-index: 0;
+    transition: border-color 0.5s ease;
+  }
+
+  // checkbox checked
+  .Base-checkbox[type='checkbox']:checked + &::before {
+    background-image: svg-url('<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><polyline points="2,9 7,15 16,5" style="stroke:' + $color-white + ';stroke-width:3;fill:none" /></svg>');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: $color-bek-lila !important;
+    //border-color: $color-white !important;
+    //box-shadow: inset 1px 2px 3px 0 rgba($color-black, 0.2);
+  }
+
+  // checkbox focus
+  //.Base-checkbox[type='checkbox']:focus + &::before {
+  //  border-color: rgba($color-cool-grey, 0.4);
+  //}
+
+  .Base-checkbox[type='checkbox']:focus + & {
+    outline: 2px dotted $color-black;
+    outline-offset: 2px;
+  }
+}
+
+.Base-form-legend {
+  @include default-h5;
+  margin-bottom: 1em;
+}
+
+
+// Formfield layout variants
+.Base-formGroup--halfLeft {
+
+  @include respond-to(sm) {
+    width: span(6) !important;
+    clear: left;
+  }
+}
+
+.Base-formGroup--oneThirdLeft {
+  @include respond-to(sm) {
+    width: span(4) !important;
+  }
+}
+
+.Base-formGroup--oneQuartLeft {
+  @include respond-to(sm) {
+    width: span(3) !important;
+    clear: left;
+  }
+}
+
+.Base-formGroup--twoThirdLeft {
+  @include respond-to(sm) {
+    width: span(8) !important;
+  }
+}
+
+.Base-formGroup--threeQuartLeft {
+  @include respond-to(sm) {
+    width: span(9) !important;
+    clear: left;
+  }
+}
+
+.Base-formGroup--halfRight {
+  @include respond-to(sm) {
+    width: span(6) !important;
+    float: right;
+  }
+}
+
+.Base-formGroup--oneThirdRight {
+  @include respond-to(sm) {
+    width: span(4) !important;
+    float: right;
+  }
+}
+
+.Base-formGroup--twoThirdRight {
+  @include respond-to(sm) {
+    width: span(8) !important;
+    float: right;
+  }
+}
+
+.Base-formGroup--threeQuartRight {
+  @include respond-to(sm) {
+    width: span(9) !important;
+    float: right;
+  }
+}
+
+.Base-formGroup--oneQuartRight {
+  @include respond-to(sm) {
+    width: span(3) !important;
+    float: right;
+  }
+}
+
+.Base-formGroup--nolabel {
+  .Base-label {
+    @include visuallyHidden;
+  }
+}
+
+// formgroup modifier for inline Radio Buttons and Checkboxes
+.Base-formGroup--inline {
+  .Base-checkbox-group,
+  .Base-radio-group {
+    display: inline-block;
+    margin-right: 2em;
+    width: auto;
+  }
+}
+
+.field-errors,
+.parsley-errors-list,
+.Base-formError {
+  @include default-small;
+  color: $color-white;
+  line-height: 1.25;
+  padding: 6px 12px;
+  display: block;
+  background-color: $color-black;
+  margin-top: 4px;
+}
+
+
+//.Base-formIconGroup {
+//  display: flex;
+//  flex-wrap: nowrap;
+//  flex-direction: row;
+//}
+//
+//.Base-formIconGroup-icon {
+//  width: 80px;
+//  flex-grow: 1;
+//  flex-shrink: 0;
+//}
+
+
+.parsley-errors-list {
+
+  opacity: 0;
+  transition: opacity 0.25s ease-in;
+  padding: 0;
+
+  &.filled {
+    opacity: 1;
+    padding: 6px 12px;
+  }
+}
+
+// input group for input and button side by side
+.Base-inputGroup--horizontal {
+  width: 100%;
+
+  .Base-input {
+    margin-bottom: 1em;
+    min-width: 140px;
+  }
+
+  .Base-button {
+    margin-bottom: 0;
+  }
+
+  @include respond-to(xs) {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: baseline;
+
+    .Base-input {
+      flex-grow: 1;
+      flex-shrink: 0;
+      flex-basis: 0;
+      margin-right: $susy-gutter-width*2;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.Base-formText {
+  @include default-p;
+  margin-right: 0.5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}

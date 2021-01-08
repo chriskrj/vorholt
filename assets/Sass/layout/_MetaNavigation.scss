@@ -1,0 +1,15 @@
+.MetaNavigation {
+  display: flex;
+  list-style: none;
+}
+
+.MetaNavigation-item {
+  &:last-child {
+    margin-left: 16px;
+  }
+}
+
+.MetaNavigation-link {
+  @include font-Default;
+  color: white;
+}

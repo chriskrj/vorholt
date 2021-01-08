@@ -1,0 +1,54 @@
+@font-face {
+  font-family: "iconfont";
+  src: url('../Fonts/iconfont.woff2?1588407047') format('woff2'),
+    url('../Fonts/iconfont.woff?1588407047') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@mixin icon {
+  display: inline-block;
+  font-family: "iconfont";
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.u-icon {
+  vertical-align: middle;
+}
+
+.u-icon::before {
+  display: inline-block;
+  font-family: "iconfont";
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  vertical-align: middle;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.u-icon-link-back::before { content: "\EA01"; }
+.u-icon-link-download::before { content: "\EA02"; }
+.u-icon-link-fax::before { content: "\EA03"; }
+.u-icon-link-mail::before { content: "\EA04"; }
+.u-icon-link-extern::before { content: "\EA05"; }
+.u-icon-link-intern::before { content: "\EA06"; }
+.u-icon-link-mobile::before { content: "\EA07"; }
+.u-icon-link-phone::before { content: "\EA08"; }
+.u-icon-link-section::before { content: "\EA09"; }
+
+
+@mixin icon-link-back { content: "\EA01"; }
+@mixin icon-link-download { content: "\EA02"; }
+@mixin icon-link-fax { content: "\EA03"; }
+@mixin icon-link-mail { content: "\EA04"; }
+@mixin icon-link-extern { content: "\EA05"; }
+@mixin icon-link-intern { content: "\EA06"; }
+@mixin icon-link-mobile { content: "\EA07"; }
+@mixin icon-link-phone { content: "\EA08"; }
+@mixin icon-link-section { content: "\EA09"; }

@@ -1,0 +1,10 @@
+.GridCol3Even-col {
+
+  @include respond-to-grid(5) {
+    width: span(6 of 12);
+  }
+
+  @include respond-to-grid(7) {
+    width: span(4 of 12);
+  }
+}

@@ -1,0 +1,10 @@
+.Base-hr {
+  border-top: 2px solid $color-gainsboro;
+  margin: 0;
+  height: 0;
+
+  .Base-theme--dark & {
+    border-top: 2px solid $color-white;
+  }
+}
+

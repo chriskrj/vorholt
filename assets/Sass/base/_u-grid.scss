@@ -1,0 +1,100 @@
+/*
+
+limitWidth always inside the container, not in same div
+
+<div class="u-container [colorstyle here]">
+
+  <p>Text can be placed here</p>
+
+  <div class="u-limitWidth-[limitSize] u-align-center">
+    <p>Text can be placed here</p>
+
+    <div class="u-row">
+      <div class="[colwidth]">
+        <p>Text can be placed here</p>
+      </div>
+    </div>
+
+  </div>
+
+  </div>
+</div>
+
+ */
+
+// common styling applied to any column
+@mixin grid-col {
+  padding-left: $susy-gutter-width;
+  padding-right: $susy-gutter-width;
+}
+
+// common styling applied to any row
+@mixin grid-row {
+  margin-left: -$susy-gutter-width;
+  margin-right: -$susy-gutter-width;
+
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  flex: 1;
+}
+
+.u-container {
+  padding-right: calc(#{$outer-pad}vw + #{$susy-gutter-width});
+  padding-left: calc(#{$outer-pad}vw + #{$susy-gutter-width});
+  width: 100%;
+}
+
+.u-align-left {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.u-align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.u-align-right {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.u-row {
+  @include grid-row;
+}
+
+.u-col {
+  @include grid-col;
+  width: 100%;
+}
+
+// 1 col = 128
+// .u-limitWidth-1 = 80
+// .u-limitWidth-12 = 1488
+@for $i from 1 through $susy-columns {
+  .u-limitWidth-#{$i} {
+    width: 100%;
+    max-width: col-width($i, false);
+  }
+}
+
+// cols
+@for $i from 1 through $susy-columns {
+  .u-col-#{$i} {
+    @include grid-col;
+    width: span($i of $susy-columns);
+  }
+}
+
+// media queries cols
+@each $size, $value in $breakpoints {
+  @include respond-to($size) {
+    @for $i from 1 through $susy-columns {
+      .u-col-#{$size}-#{$i} {
+        @include grid-col;
+        width: span($i of $susy-columns);
+      }
+    }
+  }
+}

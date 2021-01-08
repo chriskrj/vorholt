@@ -1,0 +1,8 @@
+// sizing image to coverize. Modernizr objectfit needed
+.u-objectFit {
+  .objectfit & {
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+  }
+}

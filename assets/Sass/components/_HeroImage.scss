@@ -1,0 +1,13 @@
+.HeroImage {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background-image: url("./../Images/heroimage.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+
+  @include respond-to-grid(5) {
+    height: 500px;
+  }
+}

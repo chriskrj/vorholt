@@ -1,0 +1,263 @@
+.Base-link {
+  border: none;
+  cursor: pointer;
+  color: var(--main-link-color);
+  font-weight: inherit;
+  display: inline;
+  background-color: transparent;
+  background-image: linear-gradient(90deg, $color-bek-lila 0%, $color-bek-lila 100%);
+  background-repeat: no-repeat;
+  background-size: 0 1px;
+  background-position: 0 100%;
+  transition: background-size 0.2s ease;
+  padding-bottom: 0.15em;
+
+  &.is-active,
+  &:hover,
+  .u-linkWrap:hover & {
+    background-size: 100% 1px;
+  }
+
+  .Base-theme--dark & {
+    color: $color-white;
+    background-image: linear-gradient(90deg, $color-white 0%, $color-white 100%);
+    background-size: 100% 1px;
+  }
+}
+
+.Base-link-icon {
+  display: inline-block;
+  fill: currentColor;
+  width: 1em;
+  margin-left: 0.25em;
+  margin-right: 0.25em;
+  line-height: inherit;
+}
+
+// https://css-tricks.com/snippets/css/style-links-depending-on-destination/
+.Base-iconLink,
+.Base-iconLink-fax,
+.Base-iconLink-phone,
+.Base-iconLink-email,
+.Base-iconLink-file,
+.Base-iconLink-url,
+.Base-iconLink-intranet,
+.Base-iconLink-section,
+.Base-iconLink-page {
+  @include default-p;
+  position: relative;
+  color: var(--main-link-color);
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  padding-left: 1.5em;
+  font-weight: inherit;
+  transition: background-size 0.2s ease;
+
+  &::before {
+    @include icon;
+    line-height: 1.5;
+    font-size: 1em;
+    color: var(--main-link-color);
+    margin-right: 0.33em;
+    vertical-align: middle;
+    margin-bottom: 0;
+    white-space: nowrap;
+    display: inline;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 0.2s $easeInOutCubic;
+  }
+
+  &:hover,
+  .u-linkWrap:hover & {
+    background-size: 100% 1px;
+
+    &::before {
+      transform: translateX(0.2em);
+    }
+  }
+
+  .Base-theme--dark & {
+    color: $color-white;
+    background-image: linear-gradient(90deg, $color-white 0%, $color-white 100%);
+    background-repeat: no-repeat;
+    background-size: 0 1px;
+    background-position: 0 100%;
+    padding-bottom: 0.15em;
+
+    &::before {
+      color: $color-white;
+    }
+
+    &:hover,
+    .u-linkWrap:hover & {
+      background-size: 100% 1px;
+    }
+  }
+}
+
+.Base-iconLink-page,
+.Base-iconLink[href^="t3://page"],
+.Base-iconLink[href^="t3://record"],
+.Base-iconLink[href^="/"] {
+  &::before {
+    @include icon-link-intern;
+  }
+}
+
+.Base-teaserIconLink-page,
+.Base-teaserIconLink[href^="t3://page"],
+.Base-teaserIconLink[href^="t3://record"],
+.Base-teaserIconLink[href^="/"] {
+  &::after {
+    @include icon-link-intern;
+  }
+}
+
+.Base-iconLink-url,
+.Base-iconLink[href^="http"] {
+  &::before {
+    @include icon-link-extern;
+  }
+}
+
+.Base-teaserIconLink-url,
+.Base-teaserIconLink[href^="http"] {
+  &::after {
+    @include icon-link-extern;
+  }
+}
+
+.Base-iconLink-file,
+.Base-iconLink[href^="t3://file"],
+.Base-iconLink[href$=".zip"],
+.Base-iconLink[href$=".pdf"],
+.Base-iconLink[href$=".xlsx"],
+.Base-iconLink[href$=".docx"] {
+  &::before {
+    @include icon-link-download;
+  }
+}
+
+.Base-teaserIconLink-file,
+.Base-teaserIconLink[href^="t3://file"],
+.Base-teaserIconLink[href$=".zip"],
+.Base-teaserIconLink[href$=".pdf"],
+.Base-teaserIconLink[href$=".xlsx"],
+.Base-teaserIconLink[href$=".docx"] {
+  &::after {
+    @include icon-link-download;
+  }
+}
+
+.Base-iconLink-email,
+.Base-iconLink[href^="mailto:"] {
+  &::before {
+    @include icon-link-mail;
+  }
+}
+
+.Base-teaserIconLink-email,
+.Base-teaserIconLink[href^="mailto:"] {
+  &::after {
+    @include icon-link-mail;
+  }
+}
+
+.Base-iconLink-phone,
+.Base-iconLink[href^="tel:"] {
+  &::before {
+    @include icon-link-phone;
+  }
+}
+
+.Base-teaserIconLink-phone,
+.Base-teaserIconLink[href^="tel:"] {
+  &::after {
+    @include icon-link-phone;
+  }
+}
+
+.Base-iconLink-fax {
+  &::before {
+    @include icon-link-fax;
+  }
+}
+
+.Base-teaserIconLink-fax {
+  &::before {
+    @include icon-link-fax;
+  }
+}
+
+.Base-iconLink-section,
+.Base-iconLink[href^="#"] {
+  &::before {
+    @include icon-link-section;
+  }
+}
+
+.Base-teaserIconLink-section,
+.Base-teaserIconLink[href^="#"] {
+  &::after {
+    @include icon-link-section;
+  }
+}
+
+.Base-teaserIconLink--large {
+  @include font-size(24px);
+}
+
+
+.Base-teaserIconLink,
+.Base-teaserIconLink-fax,
+.Base-teaserIconLink-phone,
+.Base-teaserIconLink-email,
+.Base-teaserIconLink-file,
+.Base-teaserIconLink-url,
+.Base-teaserIconLink-intranet,
+.Base-teaserIconLink-section,
+.Base-teaserIconLink-page {
+  position: relative;
+  color: $color-bek-lila;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  padding-left: 0;
+  font-weight: inherit;
+  transition: background-size 0.2s ease;
+
+  &::after {
+    @include icon;
+    font-size: 1em;
+    color: $color-bek-lila;
+    margin-left: 0.5em;
+    vertical-align: middle;
+    margin-bottom: 0;
+    white-space: nowrap;
+    display: inline-block;
+    position: relative;
+
+    right: 0;
+    top: 0;
+    transition: transform 0.2s $easeInOutCubic;
+  }
+
+  &:hover,
+  .u-linkWrap:hover & {
+    &::after {
+      transform: translateX(0.2em);
+    }
+  }
+
+  .Base-theme--dark & {
+    color: $color-white;
+    padding-bottom: 0.15em;
+
+    &::after {
+      color: $color-white;
+    }
+  }
+}

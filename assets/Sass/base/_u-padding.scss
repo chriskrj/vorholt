@@ -1,0 +1,43 @@
+.u-paddingTop--0 {
+  padding-top: 0 !important;
+}
+
+.u-paddingRight--0 {
+  padding-right: 0 !important;
+}
+
+.u-paddingBottom--0 {
+  padding-bottom: 0 !important;
+}
+
+.u-paddingLeft--0 {
+  padding-left: 0 !important;
+}
+
+@for $i from 1 through 4 {
+  .u-paddingTop--#{$i} {
+    padding-top: $susy-gutter-width*$i !important;
+  }
+
+  .u-paddingRight--#{$i} {
+    padding-right: $susy-gutter-width*$i !important;
+  }
+
+  .u-paddingBottom--#{$i} {
+    padding-bottom: $susy-gutter-width*$i !important;
+  }
+
+  .u-paddingLeft--#{$i} {
+    padding-left: $susy-gutter-width*$i !important;
+  }
+}
+
+@for $i from 1 through 4 {
+  .u-paddingTop--r#{$i} {
+    padding-top: calc(#{$susy-gutter-width*$i} + #{$i}vw) !important;
+  }
+
+  .u-paddingBottom--r#{$i} {
+    padding-bottom: calc(#{$susy-gutter-width*$i} + #{$i}vw) !important;
+  }
+}

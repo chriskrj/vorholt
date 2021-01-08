@@ -1,0 +1,194 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, main,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid $color-black;
+  margin: 1em 0;
+  padding: 0;
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+
+audio {
+  width: 100%;
+}
+
+// Remove default fieldset styles.
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+// Allow only vertical resizing of textareas.
+textarea {
+  resize: vertical;
+}
+// Debug Outline
+//* {
+//  outline: 1px red dotted;
+//}
+
+html {
+  font-size: 100%; // 16px
+  //font-size: 112.5%; // 18px
+  scroll-behavior: smooth;
+  background-color: var(--main-bg-color);
+}
+
+body {
+  max-width: 1920px;
+  margin: 0 auto;
+  background-color: $color-white;
+  font-size: 1em;
+  line-height: 1.5;
+  overscroll-behavior: none;  // https://www.smashingmagazine.com/2018/08/scroll-bouncing-websites/
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 1em;
+  text-rendering: optimizeLegibility;
+}
+
+input,
+textarea {
+  font-size: 1em;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+b,
+strong {
+  font-weight: $fontweight-Default-bold;
+}
+
+em {
+  font-weight: $fontweight-Default-bold;
+}
+
+small {
+  font-size: px2em(14);
+}
+
+label {
+  color: $color-black;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+// TODO: Change Mark Styling Color
+mark {
+  //background-color: $color-black;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+caption {
+  display: none;
+}
+
+button {
+  text-align: left;
+}
+
+sub,
+sup {
+  font-size: 0.583em;
+}
+
+// Universal Border Box
+// https://www.paulirish.com/2012/box-sizing-border-box-ftw/
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+// anchor jump offset
+// https://www.itsupportguides.com/knowledge-base/tech-tips-tricks/how-to-offset-anchor-tag-link-using-css/
+//:target::before {
+//  content: "";
+//  display: block;
+//  height: 85px;
+//  margin: -85px 0 0;
+//
+//  //@include respond-to(sm) {
+//  //  height: 140px;
+//  //  margin: -140px 0 0;
+//  //}
+//}
+
+// Avoid 300ms click delay on touch devices that support the `touch-action` CSS property.
+//
+// In particular, unlike most other browsers, IE11+Edge on Windows 10 on touch devices and IE Mobile 10-11
+// DON'T remove the click delay when `<meta name="viewport" content="width=device-width">` is present.
+// However, they DO support removing the click delay via `touch-action: manipulation`.
+// See:
+// * https://getbootstrap.com/docs/4.0/content/reboot/#click-delay-optimization-for-touch
+// * https://caniuse.com/#feat=css-touch-action
+// * https://patrickhlauke.github.io/touch/tests/results/#suppressing-300ms-delay
+a,
+area,
+button,
+[role="button"],
+input:not([type="range"]),
+label,
+select,
+summary,
+textarea {
+  touch-action: manipulation;
+}
+
+// global focus styling
+//:focus {
+//  outline: 2px dotted $color-black;
+//  outline-offset: 0;
+//
+//  .Base-theme--dark & {
+//    outline: 2px dotted $color-white;
+//  }
+//}
